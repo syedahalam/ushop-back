@@ -4,29 +4,36 @@ from .models import *
 
 class ProductSerializer(serializers.ModelSerializer):
 
+    user = serializers.ReadOnlyField(source='user.username')
+
     class Meta:
         model = Product
         fields = ['user', 'name', 'image','brand', 'category', 'description',
-                  'rating', 'numReview', 'price', 'countInStock', 'createdAt', '_id']
+                  'rating', 'numReview', 'price', 'countInStock', '_id']
 
 class ReviewSerializer(serializers.ModelSerializer):  
+
+    user = serializers.ReadOnlyField(source='user.username')
     class Meta:
         model = Review
-        fields = ['user', 'name', 'brand', 'category', 'description',
-                  'rating', 'numReview', 'price', 'countInStock', 'createdAt', '_id'] 
+        fields = ['user', 'name', 'product', 'rating', 'comment', '_id'] 
 
 class OrderSerializer(serializers.ModelSerializer):
+
+    user = serializers.ReadOnlyField(source='user.username')
     class Meta:
         model = Order
-        fields = ['user', 'name', 'brand', 'category', 'description', 'rating', 'numReview', 'price', 'countInStock', 'createdAt', '_id']
+        fields = ['user', 'paymentMethod' ,'taxPrice', 'shippingPrice',
+                  'totalPrice', 'isPaid', 'paidAt', 'isDelivered', 'deliveredAt', '_id']
 
 class OrderItemSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = OrderItem
-        fields = ['name', 'brand', 'category', 'description', 'rating', 'numReview', 'price', 'countInStock', 'createdAt', '_id']
+        fields = ['name', 'order', 'product', 'qty', 'image', 'price', '_id']
 
 class ShippingAddressSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShippingAddress
-        fields = ['name', 'brand', 'category', 'description',
-                  'rating', 'numReview', 'price', 'countInStock', 'createdAt', '_id']
+        fields = ['order', 'address', 'city', 'postalCode',
+                  'country', 'shippingPrice', '_id']
