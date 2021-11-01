@@ -25,3 +25,4 @@ https://scary-mummy-74832.herokuapp.com/shippingaddress/
 - pipenv shell
 - python3 manage.py runserver
 
+
