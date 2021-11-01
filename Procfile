@@ -1,1 +1,1 @@
-web:gunicorn wander_api.wsgi
+web:gunicorn backend.wsgi
