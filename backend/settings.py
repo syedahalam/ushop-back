@@ -167,3 +167,4 @@ DJOSER = {
         'user': 'users.serializers.UserCreateSerializer'
     }
 }
+WHITENOISE_USE_FINDERS = True
