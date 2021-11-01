@@ -1,1 +1,1 @@
-web:gunicorn USHOP-BACK.wsgi
+web: gunicorn backend.wsgi
